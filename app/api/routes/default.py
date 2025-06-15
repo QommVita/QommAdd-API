@@ -1,17 +1,17 @@
-"""Módulo que define las rutas principales de la API usando FastAPI/Flask."""
+"""Module that defines the main API routes using FastAPI/"""
 from fastapi import FastAPI
-from dotenv import load_dotenv
+from app.api.routes import events
 
-load_dotenv()  # Carga variables de entorno
-
-app = FastAPI(title="Mi API Python", version="0.1.0")
+app = FastAPI(title="My Python API", version="0.1.0")
+app.include_router(events.router)
 
 @app.get("/")
 def read_root():
     """
-    Endpoint principal que devuelve un mensaje de bienvenida.
+    Main endpoint that returns a welcome message.
+    
     Returns:
-        dict: Mensaje JSON de bienvenida con estructura:
-            {"message": "Bienvenido a mi API"}
+        dict: JSON welcome message with structure:
+            {"message": "Welcome to my API"}
     """
-    return {"message": "Bienvenido a mi API"}
+    return {"message": "Welcome to my API"}
